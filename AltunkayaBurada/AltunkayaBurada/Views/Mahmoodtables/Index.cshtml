@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AltunkayaBurada.Models.Mahmoodtable>
+
+@{
+    ViewData["Title"] = "Mahmood";
+}
+
+<h1>MAHMOOD</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary"> Yeni Ürün Ekle </a>
+</p>
+<table class="table table-info" >
+    <thead>
+        <tr >
+            <th >
+                Ürün Adı
+            </th>
+            <th>
+                Siteye Eklenme Tarihi
+            </th>
+            <th>
+                Son Tüketim Tarihi
+            </th>
+            <th>Seçenekler</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrunAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EklenmeTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SontuketimTarihi)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Düzenle<span class="material-symbols-outlined"></span></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detaylar<span class="material-symbols-outlined"></span></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Sil<span class="material-symbols-outlined"></span></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
